@@ -29,8 +29,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/foods">Foods</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">Logout</a>
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <div class="form-inline my-2 my-lg-0 px-3">
+                        <div class="text-white" >Welcome, <th:block th:text="${#authentication.principal.fullName}">X</th:block>!</div>
+                        <form th:action="@{/logout}" th:method="post">
+                            <input class="btn btn-link nav-link" type="submit" value="Logout">
+                        </form>
+                    </div>
                 </li>
             </ul>
             <span class="material-icons" sec:authorize="isAuthenticated()" href="/user_details">account_circle</span>
