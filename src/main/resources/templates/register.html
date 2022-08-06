@@ -1,86 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <div th:replace="fragments/navbar">Navbar</div>
+    <th:block th:replace="fragments/style">Style</th:block>
+    <title>Happy pet shop</title>
+
 </head>
 <body class="body-main">
 <header>
+    <div th:replace="fragments/navbar">Navbar</div>
 </header>
 <main role="main">
     <div class="jumbotron">
         <div class="container text-light ">
             <h1 class="display-3">
                 <div class=" pl-3 font-weight-bold text-center">
-                    Register</div></h1>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="container bg-blur rounded p-5 mt-5 w-75">
-                    <form action="/users/register" method="POST"
-                          class=" text-center text-light">
-                        <div class="form-group row">
-                            <label for="username" class="col-sm-2 col-form-label">Username</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control"
-                                       id="username"
-                                       aria-describedby="usernameHelpInline" placeholder="Username">
-                                <small id="usernameHelpInline"
-                                       class="bg-danger text-light rounded">
-                                    Username length must be between 5 and 20 characters.
-                                </small>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="fullName" class="col-sm-2 col-form-label">Full name</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control"
-                                       id="fullName"
-                                       aria-describedby="fullNameHelpInline" placeholder="Full name">
-                                <small id="fullNameHelpInline"
-                                       class="bg-danger text-light rounded">
-                                    Enter valid full name.
-                                </small>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="email" class="col-sm-2 col-form-label">Email</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="email"
-                                       aria-describedby="emailHelpInline" placeholder="email@example.com">
-                                <small id="emailHelpInline"
-                                       class="bg-danger text-light rounded">
-                                    Enter valid email address.
-                                </small>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="password" class="col-sm-2 col-form-label">Password</label>
-                            <div class="col-sm-10">
-                                <input type="password" class="form-control"
-                                       id="password"
-                                       aria-describedby="passwordHelpInline" placeholder="Password">
-                                <small id="passwordHelpInline"
-                                       class="bg-danger text-light rounded">
-                                    Password length must be more than 3 characters long.
-                                </small>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="confirmPassword" class="col-sm-2 col-form-label">Confirm Password</label>
-                            <div class="col-sm-10">
-                                <input type="password"
-                                       class="form-control" id="confirmPassword"
-                                       aria-describedby="confirmPasswordHelpInline" placeholder="Confirm Password">
-                                <small
-                                       id="confirmPasswordHelpInline" class="bg-danger text-light rounded">
-                                    Password length must be more than 3 characters long.
-                                </small>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-warning w-50">Register</button>
-                    </form>
+                    Register
                 </div>
-            </div>
+            </h1>
+        </div>
+        <div class="container col-md-3 mb-3 bg-blur rounded justify-content-center">
+            <form
+                    th:action="@{/register}"
+                    th:method="post"
+                    th:object="${userModel}"
+
+                    class="text-center text-light justify-content-center">
+
+                <div class="form-group justify-content-center align-content-center">
+                    <label for="firstName" class="text-white font-weight-bold ">First Name</label>
+                    <input
+                            id="firstName"
+                            th:field="*{firstName}"
+                            th:errorclass="is-invalid"
+                            type="text"
+                            class="form-control"
+                            placeholder="First name"/>
+                    <p class="invalid-feedback errors alert alert-danger">
+                        First name is required and should be between 2 and 20 symbols.
+                    </p>
+                </div>
+
+
+                <div class="form-group ">
+                    <label for="lastName" class="text-white font-weight-bold">Last Name</label>
+                    <input id="lastName"
+                           th:field="*{lastName}"
+                           th:errorclass="is-invalid"
+                           type="text"
+                           class="form-control"
+                           placeholder="Last name"/>
+                    <p class="invalid-feedback errors alert alert-danger">
+                        Last name is required and should be between 2 and 20 symbols.
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="text-white font-weight-bold">Email</label>
+                    <input id="email"
+                           th:field="*{email}"
+                           th:errorclass="is-invalid"
+                           type="text"
+                           class="form-control"
+                           placeholder="Email"/>
+                    <div class="invalid-feedback errors alert alert-danger">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="text-white font-weight-bold">Password</label>
+                    <input id="password"
+                           th:field="*{password}"
+                           th:errorclass="is-invalid"
+                           type="password"
+                           class="form-control"
+                           placeholder="Password"/>
+                    <small id="passwordHelpInline"
+                           class="invalid-feedback bg-danger text-light rounded">
+                        Password length must be more than 3 characters long.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword" class="text-white font-weight-bold">Repeat Password</label>
+                    <input
+                            id="confirmPassword"
+                            th:field="*{confirmPassword}"
+                            th:errorclass="is-invalid"
+                            type="password"
+                            class="form-control"
+                            placeholder="Repeat password"
+                    />
+                    <small
+                            id="confirmPasswordHelpInline"
+                            class="invalid-feedback bg-danger text-light rounded">
+                        Password length must be more than 3 characters long.
+                    </small>
+                </div>
+                <button type="submit" class="btn btn-warning w-50">Register</button>
+            </form>
         </div>
     </div>
 </main>

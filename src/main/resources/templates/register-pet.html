@@ -1,41 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>HappyPetShop Application</title>
-    <link rel="stylesheet" href="/css/reset-css.css"/>
-    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/style.css"/>
-    <link rel="icon" href="/images/paw_icon.ico">
+    <div th:replace="fragments/style">Style</div>
+    <title>Happy pet shop</title>
 </head>
 <body class="body-main">
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top rounded">
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Home</a>
-                </li>               
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Register</a>
-                    </li>               
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Register Pet</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Foods</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Logout</a>
-                    </li>                
-            </ul>
-            <img width="50px" src="/images/paw.jpg" alt="Paw">
-        </div>
-    </nav>
+    <div th:replace="fragments/navbar">Navbar</div>
 </header>
 <main role="main">
     <div class="jumbotron">

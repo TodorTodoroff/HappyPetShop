@@ -33,10 +33,10 @@ public class SecurityConfig {
                         requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
                 requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll().
                 // everyone can login and register
-                        antMatchers("/", "/login", "/register").permitAll().
-              //  antMatchers("/offers/add").authenticated().
-              //  antMatchers("/offers/**").permitAll().
-              //  antMatchers("/maintenance").permitAll().
+                        antMatchers("/", "/user/login", "/register").permitAll().
+                antMatchers("/offers/add").authenticated().
+                antMatchers("/offers/**").permitAll().
+                antMatchers("/maintenance").permitAll().
                 // all other pages are available for logger in users
                         anyRequest().
                 authenticated().
@@ -44,7 +44,7 @@ public class SecurityConfig {
                 // configuration of form login
                         formLogin().
                 // the custom login form
-                        loginPage("/login").
+                        loginPage("/user/login").
                 // the name of the username form field
                         usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY).
                 // the name of the password form field
@@ -52,7 +52,7 @@ public class SecurityConfig {
                 // where to go in case that the login is successful
                         defaultSuccessUrl("/").
                 // where to go in case that the login failed
-                        failureForwardUrl("/users/login-error").
+                        failureForwardUrl("/login-error").
                 and().
                 // configure logut
                         logout().

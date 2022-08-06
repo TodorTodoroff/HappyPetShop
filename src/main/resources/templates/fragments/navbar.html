@@ -1,15 +1,9 @@
 <!doctype html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="/css/reset-css.css"/>
-    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/style.css"/>
+
 
     <title>HappyPetShop Application</title>
 
@@ -24,22 +18,22 @@
                     <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a>
+                    <a class="nav-link" sec:authorize="!isAuthenticated()" href="/user/login">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/register">Register</a>
+                    <a class="nav-link" sec:authorize="!isAuthenticated()" href="/register">Register</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/register_pet">Register Pet</a>
+                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/register-pet">Register Pet</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/foods">Foods</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/logout">Logout</a>
+                    <a class="nav-link" sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">Logout</a>
                 </li>
             </ul>
-            <span class="material-icons" >account_circle</span>
+            <span class="material-icons" sec:authorize="isAuthenticated()" href="/user_details">account_circle</span>
 
         </div>
     </nav>
