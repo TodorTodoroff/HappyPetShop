@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
-public class UserRegistrationCotroller {
+public class UserRegistrationController {
 
     private final UserService userService;
 
-    public UserRegistrationCotroller(UserService userService) {
+    public UserRegistrationController(UserService userService) {
         this.userService = userService;
     }
 

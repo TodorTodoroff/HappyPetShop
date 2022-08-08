@@ -30,13 +30,13 @@ public class SecurityConfig {
                 // define which requests are allowed and which not
                         authorizeRequests().
                 // everyone can download static resources (css, js, images)
-                requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
+                        requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
                 requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll().
                 // everyone can login and register
                         antMatchers("/", "/user/login", "/register").permitAll().
                 // all other pages are available for logger in users
                         anyRequest().
-                permitAll().
+                authenticated().
                 and().
                 // configuration of form login
                         formLogin().
