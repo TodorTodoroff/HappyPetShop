@@ -9,7 +9,7 @@
 </head>
 <body class="body-main">
 <header>
-<div th:replace="fragments/navbar">Navbar</div>
+    <div th:replace="fragments/navbar">Navbar</div>
 </header>
 <main role="main">
     <div class="jumbotron">
@@ -24,7 +24,7 @@
                     <form
                             th:action="@{/user/login}"
                             th:method="post"
-                          class="text-center text-light align-content-center">
+                            class="text-center text-light align-content-center">
 
                         <div class="form-group">
                             <label for="username" class="text-white font-weight-bold">Email</label>
