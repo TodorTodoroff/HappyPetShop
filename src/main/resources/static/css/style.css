@@ -18,3 +18,12 @@ body {
     text-align: center;
     width: 100%;
 }
+
+.navbar-nav ul{
+    list-style: none;
+    text-align: center;
+}
+
+.navbar-nav ul li {
+    display: inline-block;
+}

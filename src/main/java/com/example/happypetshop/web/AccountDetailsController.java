@@ -80,7 +80,7 @@ public class AccountDetailsController {
             this.userService.updateUsername(userDetails.getUsername(), id);
 
 
-        return "redirect: /user/details";
+        return "redirect:/user/details/{id}";
     }
 
 }
