@@ -33,7 +33,7 @@
                     <div class="form-inline my-2 my-lg-0 px-3">
                         <div class="text-white">Welcome,
                         </div>
-                        <form th:action="@{/user/details}" th:method="get">
+                        <form th:action="@{/user/details/{id}(id=*{#authentication.principal.id})}" th:method="get">
                             <input class="btn btn-link nav-link" type="submit"
                                    th:value="${#authentication.principal.fullName}">
                         </form>

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -74,5 +75,28 @@ public class UserService {
                 setAuthentication(auth);
     }
 
+    public UserEntity getUserDetails(String username){
+        //no need for further checks as the user is logged in currently
+        return this.userRepository.findByEmail(username).get();
+    }
 
+    public UserEntity getUserById(Long id){
+        //no need for further checks as the user is logged in currently
+        return this.userRepository.findById(id).get();
+    }
+
+
+    public boolean checkIfUsernamesMatch(String username, String repeatUsername) {
+        return username.equals(repeatUsername);
+    }
+
+    public void updateUsername(String username , Long id) {
+        UserEntity userEntity = this.userRepository.findById(id).get().setEmail(username);
+
+        this.userRepository.save(userEntity);
+    }
+
+    public boolean checkIfUsernameisOccupied(String username) {
+        return this.userRepository.findByEmail(username).isPresent();
+    }
 }

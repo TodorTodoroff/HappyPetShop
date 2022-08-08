@@ -34,8 +34,8 @@ public class UserRegistrationController {
     @PostMapping("/register")
     public String register(@Valid UserRegisterDTO userModel,
                            BindingResult bindingResult,
-                           RedirectAttributes redirectAttributes,
-                           HttpServletRequest request) {
+                           RedirectAttributes redirectAttributes
+                           ) {
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("userModel", userModel);
