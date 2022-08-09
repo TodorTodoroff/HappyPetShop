@@ -12,17 +12,22 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false,
-            unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
 
     private String password;
+
     @Column(nullable = false)
     private String firstName;
+
     @Column(nullable = false)
     private String lastName;
+
     private boolean isActive;
-    private String imageUrl;
+
+    @OneToMany(targetEntity = PetEntity.class, mappedBy = "owner")
+    private List<PetEntity> pets;
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<UserRoleEntity> userRoles = new ArrayList<>();
@@ -72,15 +77,6 @@ public class UserEntity {
         return this;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public UserEntity setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-        return this;
-    }
-
     public List<UserRoleEntity> getUserRoles() {
         return userRoles;
     }
@@ -103,6 +99,14 @@ public class UserEntity {
         this.id = id;
     }
 
+    public List<PetEntity> getPets() {
+        return pets;
+    }
+
+    public void setPets(List<PetEntity> pets) {
+        this.pets = pets;
+    }
+
     @Override
     public String toString() {
         return "UserEntity{" +
@@ -111,7 +115,6 @@ public class UserEntity {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", isActive=" + isActive +
-                ", imageUrl='" + imageUrl + '\'' +
                 ", userRoles=" + userRoles +
                 '}';
     }
