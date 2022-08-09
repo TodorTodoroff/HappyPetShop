@@ -16,11 +16,6 @@ import javax.validation.Valid;
 @RequestMapping("/pets")
 public class PetController {
 
-    @GetMapping("/register-pet")
-    public String registerPet() {
-
-        return "register-pet";
-    }
 
 
     @ModelAttribute("petModel")
@@ -28,6 +23,10 @@ public class PetController {
         return new PetRegisterDTO();
     }
 
+    @GetMapping("/register-pet")
+    public String registerPet() {
+        return "register-pet";
+    }
 
     @PostMapping("/register-pet")
     public String registerPet(@Valid PetRegisterDTO petModel,
@@ -43,7 +42,13 @@ public class PetController {
         }
 
 
-        return "redirect:/";
+        return "redirect:/pets/pets-all";
+    }
+
+    @GetMapping("/pets-all")
+    public String getPets(){
+
+        return "pets-all";
     }
 
 
