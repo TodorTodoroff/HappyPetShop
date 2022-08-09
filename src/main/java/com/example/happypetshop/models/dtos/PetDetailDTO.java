@@ -31,6 +31,10 @@ public class PetDetailDTO {
     public PetDetailDTO() {
     }
 
+    public String getPetHeaderDetails(){
+        return name + " " + breed + " " + price;
+    }
+
     public Long getId() {
         return id;
     }
@@ -118,4 +122,6 @@ public class PetDetailDTO {
     public void setOwnerLastName(String ownerLastName) {
         this.ownerLastName = ownerLastName;
     }
+
+
 }

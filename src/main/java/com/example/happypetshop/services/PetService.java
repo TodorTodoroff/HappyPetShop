@@ -26,6 +26,5 @@ public class PetService {
         return this.petRepository.
                 findAll(pageable)
                 .map(this.petMapper::petEntityToPetDetailDTO);
-
     }
 }

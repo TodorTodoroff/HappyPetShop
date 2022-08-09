@@ -57,7 +57,7 @@ private final PetService petService;
     public String getPets(
             Model model,
             @PageableDefault(
-                    sort = "name",
+                    sort = "price",
                     direction = Sort.Direction.ASC,
                     page = 0,
                     size = 5) Pageable pageable) {
