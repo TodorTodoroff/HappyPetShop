@@ -1,43 +1,34 @@
-package com.example.happypetshop.models.entities;
-
+package com.example.happypetshop.models.dtos;
 
 import com.example.happypetshop.models.enums.PetSpeciesEnum;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
 
-@Entity
-@Table(name = "pets")
-public class PetEntity {
+public class PetDetailDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
     private int age;
 
-    @Column(nullable = false)
     private String breed;
 
     private String pictureUrl;
 
-    @Column(columnDefinition = "TEXT")
     private String comment;
 
-    @Enumerated(EnumType.STRING)
     private PetSpeciesEnum species;
 
-    @Column(nullable = false)
     private BigDecimal price;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private UserEntity owner;
+    private String ownerFirstName;
 
-    public PetEntity() {
+    private String ownerLastName;
+
+    private String ownerEmail;
+
+    public PetDetailDTO() {
     }
 
     public Long getId() {
@@ -72,28 +63,20 @@ public class PetEntity {
         this.breed = breed;
     }
 
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public UserEntity getOwner() {
-        return owner;
-    }
-
-    public void setOwner(UserEntity owner) {
-        this.owner = owner;
-    }
-
     public String getPictureUrl() {
         return pictureUrl;
     }
 
     public void setPictureUrl(String pictureUrl) {
         this.pictureUrl = pictureUrl;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public PetSpeciesEnum getSpecies() {
@@ -110,5 +93,29 @@ public class PetEntity {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getOwnerEmail() {
+        return ownerEmail;
+    }
+
+    public void setOwnerEmail(String ownerEmail) {
+        this.ownerEmail = ownerEmail;
+    }
+
+    public String getOwnerFirstName() {
+        return ownerFirstName;
+    }
+
+    public void setOwnerFirstName(String ownerFirstName) {
+        this.ownerFirstName = ownerFirstName;
+    }
+
+    public String getOwnerLastName() {
+        return ownerLastName;
+    }
+
+    public void setOwnerLastName(String ownerLastName) {
+        this.ownerLastName = ownerLastName;
     }
 }
