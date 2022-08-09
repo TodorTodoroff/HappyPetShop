@@ -35,6 +35,10 @@ public class PetDetailDTO {
         return name + " " + breed + " " + price;
     }
 
+    public String getOwnerFullName(){
+        return ownerFirstName + " " + ownerLastName;
+    }
+
     public Long getId() {
         return id;
     }

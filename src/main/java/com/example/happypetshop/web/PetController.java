@@ -1,17 +1,16 @@
 package com.example.happypetshop.web;
 
+import com.example.happypetshop.models.dtos.PetDetailDTO;
 import com.example.happypetshop.models.dtos.PetRegisterDTO;
 import com.example.happypetshop.services.PetService;
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -64,8 +63,22 @@ private final PetService petService;
 
         model.addAttribute("pets", this.petService.getAllPets(pageable));
 
-
         return "pets-all";
+    }
+
+    @GetMapping("/{id}/details")
+    public String getPetDetails(
+            @PathVariable("id") Long id,
+            Model model
+    ){
+
+        var petDetailDTO = this.petService.getPetById(id)
+                        .orElseThrow(() ->
+                                new RuntimeException("pet not found id: " + id));
+
+        model.addAttribute("pet", petDetailDTO );
+
+        return "pet-details";
     }
 
 

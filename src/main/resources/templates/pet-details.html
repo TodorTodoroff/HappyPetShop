@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <div th:replace="fragments/style">Style</div>
+    <title>Happy pet shop</title>
+</head>
+
+<body>
+<header>
+    <div th:replace="fragments/navbar">Navbar</div>
+</header>
+<main role="main">
+    <div class="jumbotron">
+
+        <h2 class="text-center text-white mt-5">More Details</h2>
+        <div class="offers row mx-auto d-flex flex-row justify-content-center"
+             th:object="${pet}">
+            <div class="offer card col-sm-2 col-md-3  col-lg-4 m-1 p-0">
+
+                <div class="card-body pb-1">
+                    <h5 class="card-title">
+                        Pet</h5>
+                </div>
+                <ul class="offer-details list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="card-text"> Name: <span th:text="*{name}">Text</span></div>
+                        <div class="card-text"> Age: <span th:text="*{age}">Text</span></div>
+                        <div class="card-text"> Breed: <span th:text="*{breed}"></span></div>
+                        <div class="card-text"> Species: <span th:text="*{species}"></span></div>
+                        <div class="card-text"> Price: <span th:text="*{price}"> lv.</span></div>
+                        <div class="card-text"> Owner name: <span th:text="*{ownerFullName}"></span></div>
+                        <div class="card-text"> Owner email: <span th:text="*{ownerEmail}"></span></div>
+
+                    </li>
+                </ul>
+                <div class="card-body">
+                    <form th:method="get"
+                          th:action="@{/pets/pets-all}">
+                        <button type="submit" class="btn btn-danger w-35">Back</button>
+                    </form>
+                </div>
+            </div>
+            <div class="offer card col-sm-2 col-md-3  col-lg-4 m-1 p-0">
+                <img th:src="*{pictureUrl}" class="card-img-top"  alt="Pet image">
+            </div>
+        </div>
+    </div>
+
+</main>
+<footer class="footer mt-0 text-white" style="align-items: center">
+    <div th:replace="fragments/footer">Footer</div>
+</footer>
+
+</body>
+</html>
