@@ -81,6 +81,12 @@ public class UserEntity {
         return userRoles;
     }
 
+    public String getUserRolesString() {
+        return userRoles.toString().
+                replace("[", "").
+                replace("]", "");
+    }
+
     public UserEntity setUserRoles(List<UserRoleEntity> userRoles) {
         this.userRoles = userRoles;
         return this;

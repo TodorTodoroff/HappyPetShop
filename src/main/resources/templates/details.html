@@ -26,9 +26,11 @@
                 </div>
                 <ul class="offer-details list-group list-group-flush">
                     <li class="list-group-item">
-                        <div class="card-text"> Username <span th:text="*{email}">Text</span></div>
-                        <div class="card-text"> First name <span th:text="*{firstName}">Text</span></div>
-                        <div class="card-text"> Last name <span th:text="*{lastName}"></span></div>
+                        <div class="card-text"> Username: <span th:text="*{email}">Text</span></div>
+                        <div class="card-text"> First name: <span th:text="*{firstName}">Text</span></div>
+                        <div class="card-text"> Last name: <span th:text="*{lastName}"></span></div>
+                        <div class="card-text"> User role/s: <span th:text="*{getUserRolesString()}"></span></div>
+
                     </li>
                 </ul>
                 <div class="card-body">
