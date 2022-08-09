@@ -4,6 +4,7 @@ package com.example.happypetshop.models.entities;
 import com.example.happypetshop.models.enums.PetSpeciesEnum;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "pets")
@@ -29,6 +30,9 @@ public class PetEntity {
 
     @Enumerated(EnumType.STRING)
     private PetSpeciesEnum species;
+
+    @Column(nullable = false)
+    private BigDecimal price;
 
     @ManyToOne
     private UserEntity owner;
@@ -100,4 +104,11 @@ public class PetEntity {
         this.species = species;
     }
 
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
 }

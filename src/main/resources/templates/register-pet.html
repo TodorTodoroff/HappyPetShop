@@ -15,7 +15,8 @@
     <div class="jumbotron">
         <div class="container text-light text-center">
             <h1 class="display-3">
-                <strong class="bg-blur rounded border-white pl-3 font-weight-bold text-center">Register Pet</strong></h1>
+                <strong class="bg-blur rounded border-white pl-3 font-weight-bold text-center">Register Pet</strong>
+            </h1>
         </div>
         <div class="row justify-content-center">
             <div class="col-md-6">
@@ -86,6 +87,18 @@
                             </p>
                         </div>
                         <div class="form-group">
+                            <label for="price" class="text-white font-weight-bold">Price</label>
+                            <input id="price"
+                                   th:field="*{price}"
+                                   th:errorclass="is-invalid"
+                                   type="number"
+                                   class="form-control"
+                                   placeholder="Price"/>
+                            <p class="invalid-feedback errors alert alert-danger">
+                                Please input valid price.
+                            </p>
+                        </div>
+                        <div class="form-group">
                             <label for="imageUrl" class="text-white font-weight-bold">Picture Url</label>
                             <input id="imageUrl"
                                    th:field="*{pictureUrl}"
@@ -96,12 +109,12 @@
                         <div class="form-group">
                             <label for="description" class="text-white font-weight-bold">Description</label>
                             <textarea id="description"
-                                   th:field="*{description}"
-                                   th:errorclass="is-invalid"
-                                   type="textarea"
-                                   class="form-control"
-                                   rows="3"
-                                   placeholder="Description">
+                                      th:field="*{description}"
+                                      th:errorclass="is-invalid"
+                                      type="textarea"
+                                      class="form-control"
+                                      rows="3"
+                                      placeholder="Description">
                             </textarea>
                             <p class="invalid-feedback errors alert alert-danger">
                                 Please provide a description for your pet.

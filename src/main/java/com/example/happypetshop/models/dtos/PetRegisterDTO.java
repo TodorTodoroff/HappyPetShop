@@ -6,6 +6,7 @@ import com.example.happypetshop.models.enums.PetSpeciesEnum;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
+import java.math.BigDecimal;
 
 public class PetRegisterDTO {
 
@@ -23,6 +24,9 @@ public class PetRegisterDTO {
 
     @NotNull
     private PetSpeciesEnum speciesEnum;
+
+    @PositiveOrZero
+    private BigDecimal price;
 
     private String pictureUrl;
 
@@ -77,4 +81,12 @@ public class PetRegisterDTO {
         this.pictureUrl = pictureUrl;
     }
 
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
 }

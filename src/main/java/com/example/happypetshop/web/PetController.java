@@ -1,8 +1,12 @@
 package com.example.happypetshop.web;
 
 import com.example.happypetshop.models.dtos.PetRegisterDTO;
-import com.example.happypetshop.models.dtos.UserRegisterDTO;
+import com.example.happypetshop.services.PetService;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,7 +20,11 @@ import javax.validation.Valid;
 @RequestMapping("/pets")
 public class PetController {
 
+private final PetService petService;
 
+    public PetController(PetService petService) {
+        this.petService = petService;
+    }
 
     @ModelAttribute("petModel")
     public PetRegisterDTO initUserModel() {
@@ -46,7 +54,16 @@ public class PetController {
     }
 
     @GetMapping("/pets-all")
-    public String getPets(){
+    public String getPets(
+            Model model,
+            @PageableDefault(
+                    sort = "name",
+                    direction = Sort.Direction.ASC,
+                    page = 0,
+                    size = 5) Pageable pageable) {
+
+        model.addAttribute("pets", this.petService.getAllPets(pageable));
+
 
         return "pets-all";
     }

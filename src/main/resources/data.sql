@@ -7,9 +7,9 @@ values (1, 'ADMIN'),
 -- some test users
 
 INSERT INTO users (id, email, first_name, last_name, is_active, password)
-VALUES (1, 'admin@example.com', 'Admin', 'Adminov', 1, 'asdasdasd'),
-       (2, 'user@example.com', 'User', 'Userov', 1, 'asdasdasd'),
-       (3, 'test@test', 'test', 'testov', 1, 'asdasdasd');
+VALUES (1, 'admin@example.com', 'Admin', 'Adminov', 1, '0f7e9ff03817225550b0d3ed4dacfadaffb4e6064c64f8baa73eb53ebaad15f8c1791f71766ba8d0'),
+       (2, 'user@example.com', 'User', 'Userov', 1, '0f7e9ff03817225550b0d3ed4dacfadaffb4e6064c64f8baa73eb53ebaad15f8c1791f71766ba8d0'),
+       (3, 'test@test', 'test', 'testov', 1, '0f7e9ff03817225550b0d3ed4dacfadaffb4e6064c64f8baa73eb53ebaad15f8c1791f71766ba8d0');
 
 
 
