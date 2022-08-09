@@ -23,17 +23,17 @@ VALUES (1, 1),
        (3, 2);
 
 -- some pets
-INSERT INTO pets (id, age , breed, comment, name, picture_url, species, owner_id)
+INSERT INTO pets (id, age , breed, comment, name, picture_url, species, owner_id, price)
 VALUES
     (1, 1 , 'Mandragorka' , 'Best and nicest kitty there is. NOW ON PROMOTION', 'Betty',
      'https://upload.wikimedia.org/wikipedia/commons/3/3a/Russian_blue.jpg',
-     'CAT', 2),
+     'CAT', 2, 100),
     (2, 12 , 'Lubov' , 'No breed as it was picked up from the street to make some cash on this site!', 'Bally',
      'https://miau.bg/files/lib/600x350/munchkin-cat.jpg',
-     'CAT', 3),
+     'CAT', 3, 200),
     (3, 2 , 'Golden Retriever' , 'Sweet and cuddly! Many hair though...', 'Johnny',
      'https://upload.wikimedia.org/wikipedia/commons/8/82/Golden_Retriever_standing_Tucker.jpg',
-     'DOG', 2),
+     'DOG', 2, 350),
     (4, 1 , 'HotDog' , 'It can always end up in the dog.. :)', 'Sausagy',
      'https://upload.wikimedia.org/wikipedia/commons/f/f4/MiniDachshund1_wb.jpg',
-     'DOG', 1);
+     'DOG', 1, 1001);

@@ -16,7 +16,7 @@
 </header>
 
 <div class="container-fluid">
-    <h2 class="text-center text-white mt-5">All Offers</h2>
+    <h2 class="text-center text-white mt-5">All Pets</h2>
     <div th:each="pet : ${pets.getContent()}"
          th:object="${pet}"
          class="offers row mx-auto d-flex flex-row justify-content-center">
@@ -31,13 +31,13 @@
             </div>
             <ul class="offer-details list-group list-group-flush">
                 <li class="list-group-item">
-                    <div class="card-text"><span>• Age <th:block th:text="*{age}"></th:block> </span></div>
+                    <div class="card-text"><span>• Age <th:block th:text="*{age}"></th:block>  y.</span></div>
                     <div class="card-text"><span>• Species <th:block th:text="*{species}"></th:block></span></div>
-                    <div class="card-text"><span>• Price <th:block th:text="*{price}"></th:block></span></div>
+                    <div class="card-text"><span>• Price <th:block th:text="*{price}"></th:block> lv.</span></div>
                 </li>
             </ul>
             <div class="card-body">
-                <a class="card-link" href="#" th:href="">Details</a>
+                <a class="card-link">Details</a>
             </div>
         </div>
     </div>
