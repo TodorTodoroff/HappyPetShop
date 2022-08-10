@@ -34,6 +34,7 @@ VALUES
     (3, 2 , 'Golden Retriever' , 'Sweet and cuddly! Many hair though...', 'Johnny',
      'https://upload.wikimedia.org/wikipedia/commons/8/82/Golden_Retriever_standing_Tucker.jpg',
      'DOG', 2, 350),
-    (4, 1 , 'HotDog' , 'It can always end up in the dog.. :)', 'Sausagy',
+    (4, 1 , 'HotDog' , 'It can always end up in the dog.. :) And we put a lot of volume in the comment section so we can check and test the UI and if it functions correct. This is for testing purposes only so bear in mind that !',
+     'Sausagy',
      'https://upload.wikimedia.org/wikipedia/commons/f/f4/MiniDachshund1_wb.jpg',
      'DOG', 1, 1001);
