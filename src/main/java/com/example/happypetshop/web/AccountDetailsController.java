@@ -70,7 +70,7 @@ public class AccountDetailsController {
         }
 
         boolean isOccupied =
-                this.userService.checkIfUsernameisOccupied(userDetails.getUsername());
+                this.userService.checkIfUsernameIsOccupied(userDetails.getUsername());
 
         if (isOccupied){
             redirectAttributes.addFlashAttribute("usernameOccupied", true);

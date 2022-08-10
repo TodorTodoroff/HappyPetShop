@@ -13,8 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -96,7 +94,11 @@ public class UserService {
         this.userRepository.save(userEntity);
     }
 
-    public boolean checkIfUsernameisOccupied(String username) {
+    public boolean checkIfUsernameIsOccupied(String username) {
         return this.userRepository.findByEmail(username).isPresent();
+    }
+
+    public UserEntity getUserByEmail(String username) {
+        return this.userRepository.findByEmail(username).get();
     }
 }

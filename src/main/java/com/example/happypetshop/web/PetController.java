@@ -2,11 +2,13 @@ package com.example.happypetshop.web;
 
 import com.example.happypetshop.models.dtos.PetDetailDTO;
 import com.example.happypetshop.models.dtos.PetRegisterDTO;
+import com.example.happypetshop.models.user.PetShopUserDetails;
 import com.example.happypetshop.services.PetService;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,7 +21,7 @@ import javax.validation.Valid;
 @RequestMapping("/pets")
 public class PetController {
 
-private final PetService petService;
+    private final PetService petService;
 
     public PetController(PetService petService) {
         this.petService = petService;
@@ -37,9 +39,10 @@ private final PetService petService;
 
     @PostMapping("/register-pet")
     public String registerPet(@Valid PetRegisterDTO petModel,
-                           BindingResult binding,
-                           RedirectAttributes redirectAttributes
-    ) {
+                              BindingResult binding,
+                              RedirectAttributes redirectAttributes,
+                              @AuthenticationPrincipal PetShopUserDetails userDetails
+                              ) {
 
         if (binding.hasErrors()) {
             redirectAttributes.addFlashAttribute("petModel", petModel);
@@ -48,6 +51,7 @@ private final PetService petService;
             return "redirect:/pets/register-pet";
         }
 
+        this.petService.save(petModel, userDetails);
 
         return "redirect:/pets/pets-all";
     }
@@ -70,13 +74,13 @@ private final PetService petService;
     public String getPetDetails(
             @PathVariable("id") Long id,
             Model model
-    ){
+    ) {
 
         var petDetailDTO = this.petService.getPetById(id)
-                        .orElseThrow(() ->
-                                new RuntimeException("pet not found id: " + id));
+                .orElseThrow(() ->
+                        new RuntimeException("pet not found id: " + id));
 
-        model.addAttribute("pet", petDetailDTO );
+        model.addAttribute("pet", petDetailDTO);
 
         return "pet-details";
     }

@@ -20,10 +20,10 @@ public class PetRegisterDTO {
     private String breed;
 
     @NotEmpty
-    private String description;
+    private String comment;
 
     @NotNull
-    private PetSpeciesEnum speciesEnum;
+    private PetSpeciesEnum species;
 
     @PositiveOrZero
     private BigDecimal price;
@@ -57,20 +57,20 @@ public class PetRegisterDTO {
         this.breed = breed;
     }
 
-    public String getDescription() {
-        return description;
+    public String getComment() {
+        return comment;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
-    public PetSpeciesEnum getSpeciesEnum() {
-        return speciesEnum;
+    public PetSpeciesEnum getSpecies() {
+        return species;
     }
 
-    public void setSpeciesEnum(PetSpeciesEnum speciesEnum) {
-        this.speciesEnum = speciesEnum;
+    public void setSpecies(PetSpeciesEnum species) {
+        this.species = species;
     }
 
     public String getPictureUrl() {
