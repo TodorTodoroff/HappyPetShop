@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">>
+
+<head>
+    <div th:replace="fragments/style">Style</div>
+    <title>Happy pet shop</title>
+</head>
+
+<body>
+<header>
+    <div th:replace="fragments/navbar">Navbar</div>
+</header>
+
+<div class="container-fluid">
+    <h5 class="text-center text-white mt-5">
+        UUUUPS!!!! You have no permission to perform this operation.
+
+        Why don't you <a th:href="@{/}">try</a> for something else here?
+    </h5>
+</div>
+
+<div>
+    <footer> </footer>
+</div>
+
+</body>
+</html>

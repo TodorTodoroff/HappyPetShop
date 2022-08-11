@@ -34,6 +34,7 @@ public class SecurityConfig {
                 requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll().
                 // everyone can login and register
                         antMatchers("/", "/user/login", "/register").permitAll().
+                        antMatchers("/users", "/api/users", "/api/users/admin").hasAuthority("ROLE_ADMIN").
                 // all other pages are available for logger in users
                         anyRequest().
                 authenticated().
