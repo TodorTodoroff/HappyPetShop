@@ -64,4 +64,14 @@ public class UserDetailsAdminDTO {
     public void setUserRoles(List<UserRoleEntity> userRoles) {
         this.userRoles = userRoles;
     }
+
+    @Override
+    public String toString() {
+        return "UserDetailsAdminDTO{" +
+                "email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", isActive=" + isActive +
+                ", userRoles=" + userRoles.toString().replace("[","").replace("]","");
+    }
 }

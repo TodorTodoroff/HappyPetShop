@@ -21,17 +21,30 @@ function onLoadUsers(event) {
             let firstNameCol = document.createElement('td')
             let lastNameCol = document.createElement('td')
             let userRolesCol = document.createElement('td')
+            let button = document.createElement("button")
 
             emailCol.textContent = user.email
             firstNameCol.textContent = user.firstName
             lastNameCol.textContent = user.lastName
-            userRolesCol.textContent = user.userRoles
+            var output = ''
+            let isAdmin = false
+            for (var ur in user.userRoles) {
+                if (user.userRoles[ur].userRole === 'ADMIN'){
+                    isAdmin = true
+                }
+               output += user.userRoles[ur].userRole + ' '
+            }
+            userRolesCol.textContent = output
+            button.textContent = isAdmin ? 'Admin OFF' : 'Admin ON'
+
+            button.onc
 
             // add the columns to the parent row
             row.appendChild(emailCol)
             row.appendChild(firstNameCol)
             row.appendChild(lastNameCol)
             row.appendChild(userRolesCol)
+            row.appendChild(button)
 
             usersContainer.appendChild(row);
         }))
