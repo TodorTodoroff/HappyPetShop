@@ -97,6 +97,11 @@ public class UserEntity {
         return this;
     }
 
+    public UserEntity removeRole(UserRoleEntity userRole){
+        this.userRoles.remove(userRole);
+        return this;
+    }
+
     public Long getId() {
         return id;
     }

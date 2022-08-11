@@ -2,6 +2,7 @@ let loadUsersButton = document.getElementById('loadUsers')
 
 loadUsersButton.addEventListener('click', onLoadUsers);
 
+
 function onLoadUsers(event) {
     var requestOptions = {
         method: 'GET',
@@ -35,9 +36,40 @@ function onLoadUsers(event) {
                output += user.userRoles[ur].userRole + ' '
             }
             userRolesCol.textContent = output
-            button.textContent = isAdmin ? 'Admin OFF' : 'Admin ON'
 
-            button.onc
+            let buttonName = isAdmin ? 'Admin OFF' : 'Admin ON'
+
+            button.setAttribute("name", buttonName)
+            button.textContent = buttonName
+
+            button.addEventListener('click', sendRequest)
+
+            function sendRequest(event){
+                let data = '';
+                if (isAdmin) {
+                    data = {toBeAdmin: false, email: user.email};
+                }else {
+                    data = {toBeAdmin: true, email: user.email};
+                }
+                var requestOptions = {
+                    method: 'POST',
+                    redirect: 'follow',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                };
+
+                fetch("http://localhost:8080/api/users/admin", requestOptions)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log('Success:', data);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+            }
 
             // add the columns to the parent row
             row.appendChild(emailCol)
@@ -50,3 +82,8 @@ function onLoadUsers(event) {
         }))
         .catch(error => console.log('error', error));
 }
+
+let sendAdminONButton = document.getElementsByName('Admin ON' )
+
+sendAdminONButton.addEventListener('click', sendRequest)
+

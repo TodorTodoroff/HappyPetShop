@@ -26,18 +26,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        http.
+        http.csrf().and().cors().disable().
                 // define which requests are allowed and which not
                         authorizeRequests().
                 // everyone can download static resources (css, js, images)
                         requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
                 requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll().
                 // everyone can login and register
-                        antMatchers("/", "/user/login", "/register","/api/users").permitAll().
+                        antMatchers("/", "/user/login", "/register").permitAll().
                 // all other pages are available for logger in users
                         anyRequest().
                 authenticated().
-                and().
+                and().csrf().disable().
                 // configuration of form login
                         formLogin().
                 // the custom login form

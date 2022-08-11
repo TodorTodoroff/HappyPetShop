@@ -1,10 +1,14 @@
 package com.example.happypetshop.services;
 
+import com.example.happypetshop.models.dtos.AdminCommandDTO;
 import com.example.happypetshop.models.dtos.UserDetailsAdminDTO;
 import com.example.happypetshop.models.dtos.UserRegisterDTO;
 import com.example.happypetshop.models.entities.UserEntity;
+import com.example.happypetshop.models.entities.UserRoleEntity;
+import com.example.happypetshop.models.enums.UserRoleEnum;
 import com.example.happypetshop.models.mapper.UserMapper;
 import com.example.happypetshop.repositories.UserRepository;
+import com.example.happypetshop.repositories.UserRoleRepository;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,16 +26,18 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
-    private UserDetailsService userDetailsService;
+    private final UserRoleRepository userRoleRepository;
+    private final UserDetailsService userDetailsService;
 
 
     public UserService(UserRepository userRepository,
                        PasswordEncoder passwordEncoder,
                        UserMapper userMapper,
-                       UserDetailsService userDetailsService) {
+                       UserRoleRepository userRoleRepository, UserDetailsService userDetailsService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.userMapper = userMapper;
+        this.userRoleRepository = userRoleRepository;
         this.userDetailsService = userDetailsService;
 
     }
@@ -111,4 +117,24 @@ public class UserService {
                 .map(userMapper::userDetailAdminDTOtoUserEntity)
                 .collect(Collectors.toList());
     }
+
+    public void handleAdminRights(AdminCommandDTO adminCommandDTO) {
+
+        UserEntity user = this.userRepository.
+                findByEmail(adminCommandDTO.getEmail()).
+                orElseThrow(() -> new RuntimeException("User not found " + adminCommandDTO.getEmail()));
+
+        UserRoleEntity byUserRole = this.userRoleRepository.findByUserRole(UserRoleEnum.ADMIN);
+
+        if (adminCommandDTO.isToBeAdmin() && !user.getUserRoles().contains(byUserRole)){
+            user.addRole(byUserRole);
+        }else {
+            user.removeRole(byUserRole);
+        }
+
+
+        this.userRepository.save(user);
+
+    }
+
 }

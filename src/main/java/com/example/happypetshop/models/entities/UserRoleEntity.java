@@ -3,6 +3,7 @@ package com.example.happypetshop.models.entities;
 import com.example.happypetshop.models.enums.UserRoleEnum;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "user_roles")
@@ -37,6 +38,19 @@ public class UserRoleEntity {
     @Override
     public String toString() {
         return  userRole.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserRoleEntity that = (UserRoleEntity) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
 

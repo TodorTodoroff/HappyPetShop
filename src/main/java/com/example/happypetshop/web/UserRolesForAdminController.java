@@ -1,13 +1,12 @@
 package com.example.happypetshop.web;
 
+import com.example.happypetshop.models.dtos.AdminCommandDTO;
 import com.example.happypetshop.models.dtos.UserDetailsAdminDTO;
 import com.example.happypetshop.models.entities.UserEntity;
 import com.example.happypetshop.services.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,8 +24,22 @@ public class UserRolesForAdminController {
 
 
     @GetMapping
-    public ResponseEntity<List<UserDetailsAdminDTO>> getAllBooks() {
+    public ResponseEntity<List<UserDetailsAdminDTO>> getAllUsers() {
         return ResponseEntity.
                 ok(userService.getAll());
     }
+
+
+    @PostMapping("/admin")
+    public ResponseEntity<AdminCommandDTO> receiveAdminCommand(
+            @RequestBody AdminCommandDTO adminCommandDTO
+    ) {
+        this.userService.handleAdminRights(adminCommandDTO);
+
+        return ResponseEntity.
+                noContent().
+                build();
+    }
+
+
 }
