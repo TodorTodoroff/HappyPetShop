@@ -27,3 +27,21 @@ body {
 .navbar-nav ul li {
     display: inline-block;
 }
+
+
+table{
+    border:1px solid #234465;
+    padding: 1%;
+    margin: 0 auto;
+    width: 70%;
+    border-radius: 4px;
+}
+table th{
+    text-decoration: underline;
+    text-align: center;
+}
+table tbody td{
+    text-align: center;
+    border-bottom:1px solid black;
+    padding: 0.5%;
+}

@@ -2,7 +2,6 @@ package com.example.happypetshop.services;
 
 import com.example.happypetshop.models.entities.UserEntity;
 import com.example.happypetshop.models.entities.UserRoleEntity;
-import com.example.happypetshop.models.enums.UserRoleEnum;
 import com.example.happypetshop.models.user.PetShopUserDetails;
 import com.example.happypetshop.repositories.UserRepository;
 import org.springframework.security.core.GrantedAuthority;

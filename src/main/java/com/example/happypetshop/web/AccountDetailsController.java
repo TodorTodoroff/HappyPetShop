@@ -83,4 +83,9 @@ public class AccountDetailsController {
         return "redirect:/user/details/{id}";
     }
 
+    @GetMapping("/users")
+    public String getUsersDetailsAdminPage(){
+        return "user-admin-details";
+    }
+
 }

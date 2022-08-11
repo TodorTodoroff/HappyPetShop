@@ -1,5 +1,6 @@
 package com.example.happypetshop.services;
 
+import com.example.happypetshop.models.dtos.UserDetailsAdminDTO;
 import com.example.happypetshop.models.dtos.UserRegisterDTO;
 import com.example.happypetshop.models.entities.UserEntity;
 import com.example.happypetshop.models.mapper.UserMapper;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -73,12 +75,12 @@ public class UserService {
                 setAuthentication(auth);
     }
 
-    public UserEntity getUserDetails(String username){
+    public UserEntity getUserDetails(String username) {
         //no need for further checks as the user is logged in currently
         return this.userRepository.findByEmail(username).get();
     }
 
-    public UserEntity getUserById(Long id){
+    public UserEntity getUserById(Long id) {
         //no need for further checks as the user is logged in currently
         return this.userRepository.findById(id).get();
     }
@@ -88,7 +90,7 @@ public class UserService {
         return username.equals(repeatUsername);
     }
 
-    public void updateUsername(String username , Long id) {
+    public void updateUsername(String username, Long id) {
         UserEntity userEntity = this.userRepository.findById(id).get().setEmail(username);
 
         this.userRepository.save(userEntity);
@@ -100,5 +102,13 @@ public class UserService {
 
     public UserEntity getUserByEmail(String username) {
         return this.userRepository.findByEmail(username).get();
+    }
+
+    public List<UserDetailsAdminDTO> getAll() {
+        return this.userRepository.
+                findAll()
+                .stream()
+                .map(userMapper::userDetailAdminDTOtoUserEntity)
+                .collect(Collectors.toList());
     }
 }
