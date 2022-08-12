@@ -2,28 +2,36 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
 
-<header>
+<div>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top rounded">
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">Home</a>
+                    <a class="nav-link" th:text="#{navbar_home}" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" sec:authorize="!isAuthenticated()" href="/user/login">Login</a>
+                    <a class="nav-link" th:text="#{navbar_login}" sec:authorize="!isAuthenticated()" href="/user/login">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" sec:authorize="!isAuthenticated()" href="/register">Register</a>
+                    <a class="nav-link" sec:authorize="!isAuthenticated()" th:text="#{navbar_register}" href="/register">Register</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/pets/register-pet">Register Pet</a>
+                    <a class="nav-link" sec:authorize="isAuthenticated()" th:text="#{navbar_register_pet}" href="/pets/register-pet">Register Pet</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAuthenticated()" href="/pets/pets-all">All Pets</a>
+                    <a class="nav-link" sec:authorize="isAuthenticated()" th:text="#{navbar_all_pets}" href="/pets/pets-all">All Pets</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" sec:authorize="hasRole('ROLE_ADMIN')" href="/users">All users</a>
+                    <a class="nav-link" sec:authorize="hasRole('ROLE_ADMIN')" th:text="#{navbar_users}" href="/users">All users</a>
                 </li>
 
                 <li class="nav-item" sec:authorize="isAuthenticated()">
@@ -36,14 +44,26 @@
                                        th:value="${#authentication.principal.fullName}">
                             </form>
                             <form th:action="@{/logout}" th:method="post">
-                                <input class="btn btn-link nav-link" type="submit" value="Logout">
+                                <input class="btn btn-link nav-link" type="submit" th:text="#{navbar_logout}" value="Logout">
                             </form>
                         </div>
 
                 </li>
+                <li class="nav-item">
+                    <form th:method="get">
+                        <label class="text-white" th:text="#{navbar_language}" for="lang"></label>
+                        <select
+                                onchange="this.form.submit()"
+                                id="lang"
+                                name="lang">
+                            <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
+                            <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
+                        </select>
+                    </form>
+                </li>
             </ul>
         </div>
     </nav>
-</header>
-
+</div>
+</body>
 </html>
