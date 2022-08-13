@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+<head>
+    <th:block th:replace="fragments/style">Style</th:block>
+    <title>Happy pet shop</title>
+
+</head>
+
+<body>
+
+<header>
+    <div th:replace="fragments/navbar">Navbar</div>
+</header>
+
+<div class="container-fluid">
+    <h2 class="text-center text-white mt-5">All Pets</h2>
+    <div th:each="food : ${foods.getContent()}"
+         th:object="${foods}"
+         class="offers row mx-auto d-flex flex-row justify-content-center">
+        <div class="offer card col-sm-6 col-md-3  col-lg-2 m-1 p-0">
+            <div class="card-img-top-wrapper">
+                <img class="card-img-top" th:src="*{pictureUrl}" alt="Car image">
+            </div>
+            <div class="card-body pb-1">
+                <h5 class="card-title">
+                    <th:block th:text="*{petHeaderDetails}"></th:block>
+                </h5>
+            </div>
+            <ul class="offer-details list-group list-group-flush">
+                <li class="list-group-item">
+                    <div class="card-text"><span>• Age <th:block th:text="*{age}"></th:block>  y.</span></div>
+                    <div class="card-text"><span>• Species <th:block th:text="*{species}"></th:block></span></div>
+                    <div class="card-text"><span>• Price <th:block th:text="*{price}"></th:block> lv.</span></div>
+                </li>
+            </ul>
+            <div class="card-body">
+                <a class="card-link" th:href="@{/pets/{petId}/details(petId=*{id})}" >Details</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <footer class="footer mt-0 text-white" style="align-items: center">
+        <div th:replace="fragments/footer">Footer</div>
+    </footer>
+</div>
+
+</body>
+</html>
