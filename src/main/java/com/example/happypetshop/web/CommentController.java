@@ -17,7 +17,7 @@ public class CommentController {
     }
 
 
-    @GetMapping
+    @GetMapping("/comments")
     public String getComments(
             Model model
     ){
