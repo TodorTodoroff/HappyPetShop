@@ -11,27 +11,47 @@
     <div th:replace="fragments/navbar">Navbar</div>
 </header>
 
-<div>
-    <form th:action="@{/user/details/{id}(id=*{#authentication.principal.id})}"
-          th:method="post"
-          th:object="commentModel">
-        <div>
-<textarea name="comments" id="comments" style="font-family:sans-serif;font-size:1.2em;">
-</textarea>
-        </div>
-        <input type="submit" value="Post">
-    </form>
+<div class="container">
+    <div class="">
+        <form th:action="@{/comments/submit/{id}(id=*{#authentication.principal.id})}"
+              th:method="POST"
+              th:object="${commentModel}"
+              class="text-center text-light align-content-center"
+              style="margin-top: 40px;"
+        >
+            <div class="form-group">
+                <label for="comments" class="text-white font-weight-bold"></label>
+                <textarea
+                        name="comments"
+                        th:field="*{comment}"
+                        placeholder="Say something here .. :)"
+                        id="comments"
+                        style="font-family:sans-serif;font-size:1.2em; margin-top: 40px;"></textarea>
+
+                <p th:if="${noComment}" class="errors alert">
+                    Please input comment.
+                </p>
+            </div>
+            <input type="submit" value="Post">
+        </form>
+    </div>
 </div>
+<div class="offers row mx-auto d-flex flex-row justify-content-center" style="margin-top: 40px;">
 
-<div>
-    <form th:action="@{/comments/submit}" method="post">
-        <div>
-<textarea name="comments" id="userComments" style="font-family:sans-serif;font-size:1.2em;">
-</textarea>
+    <div th:each="comment: ${comments}" class="offer card col-sm-6 col-md-3  col-lg-2 m-1 p-0">
+        <div class="card-body pb-1">
+            <h6 class="card-title" th:text="'From: ' + ${comment.username}"></h6>
         </div>
-
-    </form>
+        <ul class="offer-details list-group list-group-flush">
+            <li class="list-group-item">
+                <div class="card-text"><span th:text="'Comment: ' + ${comment.comment}"></span></div>
+            </li>
+        </ul>
+    </div>
 </div>
 
 </body>
+<footer class="footer mt-0 text-white" style="align-items: center; ">
+    <div th:replace="fragments/footer">Footer</div>
+</footer>
 </html>

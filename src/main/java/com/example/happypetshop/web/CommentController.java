@@ -40,16 +40,19 @@ public class CommentController {
     @PostMapping("/submit/{id}")
     public String submitComment(
             @PathVariable("id") Long id,
-            @Valid CommentDTO commentDTO,
+            @Valid CommentDTO commentModel,
             BindingResult commentBR,
             RedirectAttributes redirectAttributes
     ) {
 
         if (commentBR.hasErrors()) {
             redirectAttributes.addFlashAttribute("noComment", true);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.commentModel", commentBR);
 
             return "redirect:/comments";
         }
+
+        this.commentService.saveComment(commentModel,id);
 
         return "redirect:/comments";
     }
