@@ -6,10 +6,7 @@ import com.example.happypetshop.services.CommentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -40,8 +37,9 @@ public class CommentController {
         return "comments";
     }
 
-    @PostMapping("/submit")
+    @PostMapping("/submit/{id}")
     public String submitComment(
+            @PathVariable("id") Long id,
             @Valid CommentDTO commentDTO,
             BindingResult commentBR,
             RedirectAttributes redirectAttributes

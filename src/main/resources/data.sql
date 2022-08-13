@@ -51,3 +51,10 @@ VALUES
 (4, 'GOSBY' , 'Spanish and grain free protein. Best for sensitive stomach of the pet.', 143, 'Dry',
  'https://gosbi.com/wp-content/uploads/2016/05/Grain_free_Puppy_72_dpi.png' );
 
+--some sample comments
+INSERT INTO comments(id, username, comment)
+VALUES
+    (1, 'example@example', 'Some test comment for example'),
+    (2, 'example@example', 'Some test 2 comment for example'),
+    (3, 'example@example', 'Some test 3 comment for example');
+
