@@ -1,7 +1,11 @@
 body {
     background-image: url(/images/doggy-bg.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     display: flex;
     flex-direction: column;
+    background-size: cover;
+    background-color: #464646;
 }
 
 .jumbotron {
@@ -19,15 +23,17 @@ body {
     width: 100%;
 }
 
-.navbar-nav ul{
-    list-style: none;
-    text-align: center;
+.navbar{
+    position: fixed;
+    top: 0px;
+    width: 100%;
 }
 
-.navbar-nav ul li {
-    display: inline-block;
-}
 
+
+header{
+    z-index: 100;
+}
 
 table{
     border:1px solid #234465;

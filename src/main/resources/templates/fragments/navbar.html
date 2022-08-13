@@ -12,46 +12,50 @@
 <body>
 
 <div>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top rounded">
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-            <ul class="navbar-nav mr-auto">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-md-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" th:text="#{navbar_home}" href="/">Home</a>
+                    <a class="nav-link" th:text="#{navbar_home}" href="/">Home <span
+                            class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:text="#{navbar_login}" sec:authorize="!isAuthenticated()" href="/user/login">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" sec:authorize="!isAuthenticated()" th:text="#{navbar_register}" href="/register">Register</a>
+                    <a class="nav-link" sec:authorize="!isAuthenticated()" th:text="#{navbar_register}"
+                       href="/register">Register</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAuthenticated()" th:text="#{navbar_register_pet}" href="/pets/register-pet">Register Pet</a>
+                    <a class="nav-link" sec:authorize="isAuthenticated()" th:text="#{navbar_register_pet}"
+                       href="/pets/register-pet">Register Pet</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAuthenticated()" th:text="#{navbar_all_pets}" href="/pets/pets-all">All Pets</a>
+                    <a class="nav-link" sec:authorize="isAuthenticated()" th:text="#{navbar_all_pets}"
+                       href="/pets/pets-all">All Pets</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" sec:authorize="hasRole('ROLE_ADMIN')" th:text="#{navbar_users}" href="/users">All users</a>
+                    <a class="nav-link" sec:authorize="hasRole('ROLE_ADMIN')" th:text="#{navbar_users}" href="/users">All
+                        users</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" sec:authorize="isAuthenticated()" th:text="#{navbar_foods}" href="/foods">All
+                        users</a>
                 </li>
 
                 <li class="nav-item" sec:authorize="isAuthenticated()">
-
-                        <div class="form-inline my-2 my-lg-0 px-3">
-                            <div class="text-white">Welcome,
-                            </div>
-                            <form th:action="@{/user/details/{id}(id=*{#authentication.principal.id})}" th:method="get">
-                                <input class="btn btn-link nav-link" type="submit"
-                                       th:value="${#authentication.principal.fullName}">
-                            </form>
-                            <form th:action="@{/logout}" th:method="post">
-                                <input class="btn btn-link nav-link" type="submit" th:text="#{navbar_logout}" value="Logout">
-                            </form>
-                        </div>
-
+                    <form th:method="get" th:action="@{/user/details/{id}(id=*{#authentication.principal.id})}">
+                    <a class="nav-link"
+                       th:text="${#authentication.principal.fullName}" th:href="@{/user/details/{id}(id=*{#authentication.principal.id})}">User</a>
+                    </form>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" sec:authorize="isAuthenticated()" th:text="#{navbar_logout}" href="/logout">All
+                        users</a>
                 </li>
                 <li class="nav-item">
                     <form th:method="get">
-                        <label class="text-white" th:text="#{navbar_language}" for="lang"></label>
+                        <label class="text" th:text="#{navbar_language}" for="lang"></label>
                         <select
                                 onchange="this.form.submit()"
                                 id="lang"
@@ -67,3 +71,4 @@
 </div>
 </body>
 </html>
+
