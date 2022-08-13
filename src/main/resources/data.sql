@@ -38,3 +38,16 @@ VALUES
      'Sausagy',
      'https://upload.wikimedia.org/wikipedia/commons/f/f4/MiniDachshund1_wb.jpg',
      'DOG', 1, 1001);
+
+--some foods
+INSERT INTO foods (id, brand, description, price, type, picture_url )
+VALUES
+(1, 'JOSERA' , 'Really nice and healthy foods for your favorite pet. Festival Edition', 125, 'Dry',
+ 'https://www.josera.com/uploads/media/content-half/06/106-josera-festival-dog-food-package.png?v=3-0' ),
+(2, 'JOSERA' , 'Best healthy food for your favorite pet. Family plus package.', 132, 'Dry',
+ 'https://www.josera.com/uploads/media/content-half/00/40-josera-family-plus-dog-food-package.png?v=3-0' ),
+(3, 'PEDIGREE' , 'Not the best you can get, but a budget one. ', 101, 'Dry',
+ 'https://m.media-amazon.com/images/I/81xyE8OZBqL._AC_SX466_.jpg' ),
+(4, 'GOSBY' , 'Spanish and grain free protein. Best for sensitive stomach of the pet.', 143, 'Dry',
+ 'https://gosbi.com/wp-content/uploads/2016/05/Grain_free_Puppy_72_dpi.png' );
+

@@ -28,11 +28,11 @@ public class PetService {
     }
 
 
-    public Page<PetDetailDTO> getAllPets(Pageable pageable) {
-        return this.petRepository.
-                findAll(pageable)
-                .map(this.petMapper::petEntityToPetDetailDTO);
-    }
+        public Page<PetDetailDTO> getAllPets(Pageable pageable) {
+            return this.petRepository.
+                    findAll(pageable)
+                    .map(this.petMapper::petEntityToPetDetailDTO);
+        }
 
     public Optional<PetDetailDTO> getPetById(Long id) {
         return this.petRepository.

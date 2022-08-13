@@ -26,8 +26,15 @@ public class FoodEntity {
     @Column(nullable = false)
     private BigDecimal price;
 
+    @Column(nullable = false)
+    private String pictureUrl;
+
 
     public FoodEntity() {
+    }
+
+    public String getFoodHeaderDetails(){
+        return brand.name();
     }
 
     public Long getId() {
@@ -68,5 +75,14 @@ public class FoodEntity {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
     }
 }

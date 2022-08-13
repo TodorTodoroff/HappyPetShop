@@ -17,6 +17,17 @@ body {
     background-color: rgba(0, 0, 0, 0.7); /* Black w/opacity/see-through */
 }
 
+
+.offer.card {
+    display: inline-block;
+}
+
+.card-img-top-wrapper {
+    height: 150px;
+    overflow:hidden;
+}
+
+
 /* text-align */
 .footer {
     text-align: center;
