@@ -52,8 +52,8 @@
                 <form th:method="get" th:action="@{/user/details/}">
                     <th:block>
                     <a class="nav-link"
-                       sec:authentication="name"
-                       th:href="@{/user/details/}">User</a>
+                       th:text="${#authentication.principal.fullName}"
+                       th:href="@{/user/details/{id}(id=${#authentication.principal.id})}">User</a>
                     </th:block>
                 </form>
             </li>

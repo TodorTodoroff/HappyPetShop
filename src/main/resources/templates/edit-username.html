@@ -23,7 +23,7 @@
 
                     <form
                             th:method="post"
-                            th:action="@{/user/edit-username/update/}"
+                            th:action="@{/user/edit-username/update/{id}(id=${#authentication.principal.id})}"
                             th:object="${userDetails}"
                             class="text-center text-light align-content-center">
 

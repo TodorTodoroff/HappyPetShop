@@ -24,12 +24,12 @@ public class AccountDetailsController {
         this.userService = userService;
     }
 
-    @GetMapping("/user/details")
+    @GetMapping("/user/details/{id}")
     public String userDetails(
-            Principal user,
+            @PathVariable("id") Long id,
             Model model) {
 
-        model.addAttribute("user", this.userService.getUserByEmail(user.getName()));
+        model.addAttribute("user", this.userService.getUserById(id));
 
         return "details";
     }
@@ -45,9 +45,9 @@ public class AccountDetailsController {
         return "edit-username";
     }
 
-    @PostMapping("/user/edit-username/update")
+    @PostMapping("/user/edit-username/update/{id}")
     public String updateNewUsername(
-            Principal user,
+            @PathVariable("id") Long id,
             @Valid UserUpdateUsernameDTO userDetails,
             BindingResult br,
             RedirectAttributes redirectAttributes
@@ -78,10 +78,10 @@ public class AccountDetailsController {
             return "redirect:/user/edit-username";
         }
 
-            this.userService.updateUsername(userDetails.getUsername(), user);
+            this.userService.updateUsername(userDetails.getUsername(), id);
 
 
-        return "redirect:/user/details";
+        return "redirect:/";
     }
 
     @GetMapping("/users")

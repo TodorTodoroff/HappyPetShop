@@ -18,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -63,6 +64,13 @@ public class UserService {
         UserEntity newUser = userMapper.userDtoToUserEntity(userRegisterDTO);
         newUser.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
 
+        UserRoleEntity byUserRole = this.userRoleRepository.findByUserRole(UserRoleEnum.USER);
+
+        List<UserRoleEntity> roles = new ArrayList<>();
+        roles.add(byUserRole);
+
+        newUser.setUserRoles(roles);
+
         this.userRepository.save(newUser);
         login(newUser.getEmail());
     }
@@ -98,8 +106,10 @@ public class UserService {
         return username.equals(repeatUsername);
     }
 
-    public void updateUsername(String username, Principal user) {
-        UserEntity userEntity = this.userRepository.findByEmail(user.getName()).get().setEmail(username);
+    public void updateUsername(String username, Long id) {
+        UserEntity userEntity = this.userRepository.findById(id).get();
+        userEntity.setEmail(username);
+
 
         this.userRepository.save(userEntity);
     }
@@ -109,6 +119,7 @@ public class UserService {
     }
 
     public UserEntity getUserByEmail(String username) {
+
         return this.userRepository.findByEmail(username).get();
     }
 
@@ -128,9 +139,9 @@ public class UserService {
 
         UserRoleEntity byUserRole = this.userRoleRepository.findByUserRole(UserRoleEnum.ADMIN);
 
-        if (adminCommandDTO.isToBeAdmin() && !user.getUserRoles().contains(byUserRole)){
+        if (adminCommandDTO.isToBeAdmin() && !user.getUserRoles().contains(byUserRole)) {
             user.addRole(byUserRole);
-        }else {
+        } else {
             user.removeRole(byUserRole);
         }
 

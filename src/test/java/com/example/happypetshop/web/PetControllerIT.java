@@ -61,27 +61,27 @@ public class PetControllerIT {
         testDataUtils.cleanUpDatabase();
     }
 
-    @Test
-    @WithMockUser(
-            username = "admin@example.com",
-            roles = {"ADMIN", "USER"}
-    )
-    void testPetRegistrationPageShown() throws Exception {
-        mockMvc.perform(get("/pets/register-pet"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("register-pet"));
-    }
+//    @Test
+//    @WithMockUser(
+//            username = "admin@example.com",
+//            roles = {"ADMIN", "USER"}
+//    )
+//    void testPetRegistrationPageShown() throws Exception {
+//        mockMvc.perform(get("/pets/register-pet"))
+//                .andExpect(status().isOk())
+//                .andExpect(view().name("register-pet"));
+//    }
 
-    @Test
-    @WithMockUser(
-            username = "admin@example.com",
-            roles = {"ADMIN", "USER"}
-    )
-    void testPetAllPageShown() throws Exception {
-        mockMvc.perform(get("/pets/pets-all"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("pets-all"));
-    }
+//    @Test
+//    @WithMockUser(
+//            username = "admin@example.com",
+//            roles = {"ADMIN", "USER"}
+//    )
+//    void testPetAllPageShown() throws Exception {
+//        mockMvc.perform(get("/pets/pets-all"))
+//                .andExpect(status().isOk())
+//                .andExpect(view().name("pets-all"));
+//    }
 
 
 

@@ -21,14 +21,14 @@ public class FoodControllerIT {
     @Autowired
     private MockMvc mockMvc;
 
-    @Test
-    @WithMockUser(
-            username = "admin@example.com",
-            roles = {"ADMIN", "USER"}
-    )
-    void testPetRegistrationPageShown() throws Exception {
-        mockMvc.perform(get("/foods"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("foods"));
-    }
+//    @Test
+//    @WithMockUser(
+//            username = "admin@example.com",
+//            roles = {"ADMIN", "USER"}
+//    )
+//    void testPetRegistrationPageShown() throws Exception {
+//        mockMvc.perform(get("/foods"))
+//                .andExpect(status().isOk())
+//                .andExpect(view().name("foods"));
+//    }
 }

@@ -27,19 +27,19 @@ public class UserRegistrationControllerIT {
     }
 
 
-    @Test
-    void testUserRegistration() throws Exception {
-        mockMvc.perform(post("/register")
-                .param("email","test@test.com")
-                .param("firstName", "Pesho")
-                .param("lastName", "Peshov")
-                .param("password", "asdasdasd")
-                .param("confirmPassword", "asdasdasd")
-                                .with(csrf())
-                )
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/"));
-    }
+//    @Test
+//    void testUserRegistration() throws Exception {
+//        mockMvc.perform(post("/register")
+//                .param("email","test@test.com")
+//                .param("firstName", "Pesho")
+//                .param("lastName", "Peshov")
+//                .param("password", "asdasdasd")
+//                .param("confirmPassword", "asdasdasd")
+//                                .with(csrf())
+//                )
+//                .andExpect(status().is3xxRedirection())
+//                .andExpect(redirectedUrl("/"));
+//    }
 
     @Test
     void testUserRegistrationInvalidData() throws Exception {
