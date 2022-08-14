@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/pets")
@@ -41,9 +42,8 @@ public class PetController {
     public String registerPet(@Valid PetRegisterDTO petModel,
                               BindingResult binding,
                               RedirectAttributes redirectAttributes,
-                              @AuthenticationPrincipal PetShopUserDetails userDetails
+                              Principal userDetails
                               ) {
-
         if (binding.hasErrors()) {
             redirectAttributes.addFlashAttribute("petModel", petModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.petModel",

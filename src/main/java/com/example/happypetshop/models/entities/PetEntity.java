@@ -25,7 +25,7 @@ public class PetEntity {
 
     private String pictureUrl;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(nullable = false)
     private String comment;
 
     @Enumerated(EnumType.STRING)

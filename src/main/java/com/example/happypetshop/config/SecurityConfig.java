@@ -71,6 +71,9 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService(UserRepository userRepository) {
         return new PetShopUserDetailsService(userRepository);
     }
+
+
+
 }
 
 

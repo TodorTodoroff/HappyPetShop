@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 public class AccountDetailsController {
@@ -23,12 +24,12 @@ public class AccountDetailsController {
         this.userService = userService;
     }
 
-    @GetMapping("/user/details/{id}")
+    @GetMapping("/user/details")
     public String userDetails(
-            @PathVariable("id") Long id,
+            Principal user,
             Model model) {
 
-        model.addAttribute("user", this.userService.getUserById(id));
+        model.addAttribute("user", this.userService.getUserByEmail(user.getName()));
 
         return "details";
     }
@@ -44,9 +45,9 @@ public class AccountDetailsController {
         return "edit-username";
     }
 
-    @PostMapping("/user/edit-username/update/{id}")
+    @PostMapping("/user/edit-username/update")
     public String updateNewUsername(
-            @PathVariable Long id,
+            Principal user,
             @Valid UserUpdateUsernameDTO userDetails,
             BindingResult br,
             RedirectAttributes redirectAttributes
@@ -77,10 +78,10 @@ public class AccountDetailsController {
             return "redirect:/user/edit-username";
         }
 
-            this.userService.updateUsername(userDetails.getUsername(), id);
+            this.userService.updateUsername(userDetails.getUsername(), user);
 
 
-        return "redirect:/user/details/{id}";
+        return "redirect:/user/details";
     }
 
     @GetMapping("/users")

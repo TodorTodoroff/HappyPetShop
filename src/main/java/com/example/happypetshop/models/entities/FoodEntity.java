@@ -20,7 +20,7 @@ public class FoodEntity {
     @Column(nullable = false)
     private String type;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(nullable = false)
     private String description;
 
     @Column(nullable = false)

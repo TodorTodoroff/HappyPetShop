@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.Optional;
 
 @Service
@@ -40,11 +41,11 @@ public class PetService {
                 map(this.petMapper::petEntityToPetDetailDTO);
     }
 
-    public void save(PetRegisterDTO petModel, PetShopUserDetails userDetails) {
+    public void save(PetRegisterDTO petModel, Principal userDetails) {
 
         PetEntity pet = this.petMapper.petRegisterDTOtoPetEntity(petModel);
 
-        UserEntity user = this.userService.getUserByEmail(userDetails.getUsername());
+        UserEntity user = this.userService.getUserByEmail(userDetails.getName());
 
         pet.setOwner(user);
 

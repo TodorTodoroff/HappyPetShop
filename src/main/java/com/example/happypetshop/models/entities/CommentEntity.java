@@ -14,7 +14,7 @@ public class CommentEntity {
     @Column(nullable = false)
     private String username;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false)
     private String comment;
 
 

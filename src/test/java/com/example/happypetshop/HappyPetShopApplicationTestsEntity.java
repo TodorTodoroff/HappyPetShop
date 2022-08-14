@@ -8,6 +8,7 @@ class HappyPetShopApplicationTestsEntity {
 
     @Test
     void contextLoads() {
+
     }
 
 }

@@ -17,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -96,8 +97,8 @@ public class UserService {
         return username.equals(repeatUsername);
     }
 
-    public void updateUsername(String username, Long id) {
-        UserEntity userEntity = this.userRepository.findById(id).get().setEmail(username);
+    public void updateUsername(String username, Principal user) {
+        UserEntity userEntity = this.userRepository.findByEmail(user.getName()).get().setEmail(username);
 
         this.userRepository.save(userEntity);
     }
