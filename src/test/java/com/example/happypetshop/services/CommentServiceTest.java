@@ -12,7 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class CommentServiceTest {
@@ -31,7 +31,7 @@ public class CommentServiceTest {
     }
 
     @Test
-    void getAllCommentsTest(){
+    void getAllCommentsTest() {
         CommentEntity testComment1 = new CommentEntity();
         testComment1.setComment("test comment1");
         testComment1.setUsername("test1@test.com");
@@ -42,10 +42,10 @@ public class CommentServiceTest {
         testComment2.setUsername("test2@test.com");
         testComment2.setId(2L);
 
-        when (mockCommentRepository.findAll()).thenReturn(List.of(testComment1, testComment2));
+        when(mockCommentRepository.findAll()).thenReturn(List.of(testComment1, testComment2));
 
         List<CommentEntity> testListComments =
-        toTest.getAllComments();
+                toTest.getAllComments();
 
         Assertions.assertEquals(2, testListComments.size());
         Assertions.assertEquals(testComment1.getComment(), testListComments.get(0).getComment());
@@ -60,17 +60,14 @@ public class CommentServiceTest {
     }
 
     @Test
-    void saveCommentTest(){
-//        CommentEntity testComment1 = new CommentEntity();
-//        testComment1.setComment("test comment1");
-//        testComment1.setUsername("test1@test.com");
-//        testComment1.setId(1L);
-//
-//        when (mockCommentRepository.save(testComment1)).thenReturn(testComment1);
-//
-//        CommentDTO testDTO = new CommentDTO();
-//        testDTO.setComment("test comment1");
-//
+    void saveCommentTest() {
+        CommentEntity testComment1 = new CommentEntity();
+        testComment1.setComment("test comment1");
+        testComment1.setUsername("test1@test.com");
+
+        mockCommentRepository.save(testComment1);
+
+        verify(mockCommentRepository, times(1)).save(any());
 
     }
 

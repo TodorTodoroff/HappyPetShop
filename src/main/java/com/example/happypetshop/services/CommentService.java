@@ -31,12 +31,7 @@ public class CommentService {
 
         UserEntity userById = this.userService.getUserById(id);
 
-        if (userById == null) {
-            throw new RuntimeException("User not found");
-        }
-
         comment.setUsername(userById.getEmail());
-
         this.commentRepository.save(comment);
 
     }

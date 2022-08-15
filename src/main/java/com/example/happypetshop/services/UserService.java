@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -97,8 +98,12 @@ public class UserService {
     }
 
     public UserEntity getUserById(Long id) {
+        Optional<UserEntity> userEntity = this.userRepository.findById(id);
         //no need for further checks as the user is logged in currently
-        return this.userRepository.findById(id).get();
+        if (userEntity.isEmpty()) {
+            throw new RuntimeException("User not found");
+        }
+        return userEntity.get();
     }
 
 

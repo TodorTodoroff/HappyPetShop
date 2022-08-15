@@ -6,7 +6,6 @@ import com.example.happypetshop.models.dtos.PetRegisterDTO;
 import com.example.happypetshop.models.entities.PetEntity;
 import com.example.happypetshop.models.entities.UserEntity;
 import com.example.happypetshop.models.mapper.PetMapper;
-import com.example.happypetshop.models.user.PetShopUserDetails;
 import com.example.happypetshop.repositories.PetRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -42,13 +41,9 @@ public class PetService {
     }
 
     public void save(PetRegisterDTO petModel, Principal userDetails) {
-
         PetEntity pet = this.petMapper.petRegisterDTOtoPetEntity(petModel);
-
         UserEntity user = this.userService.getUserByEmail(userDetails.getName());
-
         pet.setOwner(user);
-
         this.petRepository.save(pet);
     }
 }
