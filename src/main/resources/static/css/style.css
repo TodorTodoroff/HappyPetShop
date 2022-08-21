@@ -24,7 +24,7 @@ body {
 
 .card-img-top-wrapper {
     height: 150px;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 
@@ -37,31 +37,35 @@ body {
     display: inline-block;
 }
 
-.navbar{
+.navbar {
     position: fixed;
     top: 0px;
     width: 100%;
 }
 
+.footer {
+    display: inline-block;
+}
 
-
-header{
+header {
     z-index: 100;
 }
 
-table{
-    border:1px solid #234465;
+table {
+    border: 1px solid #234465;
     padding: 1%;
     margin: 0 auto;
     width: 70%;
     border-radius: 4px;
 }
-table th{
+
+table th {
     text-decoration: underline;
     text-align: center;
 }
-table tbody td{
+
+table tbody td {
     text-align: center;
-    border-bottom:1px solid black;
+    border-bottom: 1px solid black;
     padding: 0.5%;
 }
