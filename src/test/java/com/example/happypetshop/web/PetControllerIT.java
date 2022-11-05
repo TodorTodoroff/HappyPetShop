@@ -61,28 +61,23 @@ public class PetControllerIT {
         testDataUtils.cleanUpDatabase();
     }
 
-//    @Test
-//    @WithMockUser(
-//            username = "admin@example.com",
-//            roles = {"ADMIN", "USER"}
-//    )
-//    void testPetRegistrationPageShown() throws Exception {
-//        mockMvc.perform(get("/pets/register-pet"))
-//                .andExpect(status().isOk())
-//                .andExpect(view().name("register-pet"));
-//    }
+    @Test
+    @WithUserDetails(value = "admin@example.com",
+            userDetailsServiceBeanName = "testUserDataService")
+    void testPetRegistrationPageShown() throws Exception {
+        mockMvc.perform(get("/pets/register-pet"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("register-pet"));
+    }
 
-//    @Test
-//    @WithMockUser(
-//            username = "admin@example.com",
-//            roles = {"ADMIN", "USER"}
-//    )
-//    void testPetAllPageShown() throws Exception {
-//        mockMvc.perform(get("/pets/pets-all"))
-//                .andExpect(status().isOk())
-//                .andExpect(view().name("pets-all"));
-//    }
-
+    @Test
+    @WithUserDetails(value = "user@example.com",
+            userDetailsServiceBeanName = "testUserDataService")
+    void testPetAllPageShown() throws Exception {
+        mockMvc.perform(get("/pets/pets-all"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("pets-all"));
+    }
 
 
     @Test
@@ -90,8 +85,8 @@ public class PetControllerIT {
             userDetailsServiceBeanName = "testUserDataService")
     void testPetRegistration() throws Exception {
         mockMvc.perform(post("/pets/register-pet")
-                        .param("name","Betty")
-                        .param("species","CAT")
+                        .param("name", "Betty")
+                        .param("species", "CAT")
                         .param("breed", "TESTOVA")
                         .param("age", "1")
                         .param("price", "1001")
@@ -109,8 +104,8 @@ public class PetControllerIT {
             userDetailsServiceBeanName = "testUserDataService")
     void testPetRegistrationWithInvalidData() throws Exception {
         mockMvc.perform(post("/pets/register-pet")
-                        .param("name","")
-                        .param("species","CAT")
+                        .param("name", "")
+                        .param("species", "CAT")
                         .param("breed", "TESTOVA")
                         .param("age", "1")
                         .param("price", "1001")
@@ -130,7 +125,7 @@ public class PetControllerIT {
         mockMvc.perform(get("/pets/{id}/details", testPet.getId()).
                         with(csrf())
                 )
-                 .andExpect(status().isOk())
+                .andExpect(status().isOk())
                 .andExpect(view().name("pet-details"));
     }
 
@@ -152,5 +147,5 @@ public class PetControllerIT {
 //                )
 //                .andExpect(result -> assertTrue(result.getResolvedException() instanceof RuntimeException));
 //    }
-
+//
 }

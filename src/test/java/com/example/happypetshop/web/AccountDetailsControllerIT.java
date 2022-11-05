@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -43,39 +44,32 @@ public class AccountDetailsControllerIT {
         testDataUtils.cleanUpDatabase();
     }
 
-//    @Test
-//    @WithMockUser(
-//            username = "admin@example.com",
-//            roles = {"ADMIN", "USER"}
-//    )
-//    void testAccountDetailsPageShown() throws Exception {
-//        mockMvc.perform(get("/user/details/{id}",testAdmin.getId()))
-//                .andExpect(status().isOk())
-//                .andExpect(view().name("details"));
-//    }
+    @Test
+    @WithUserDetails(value = "user@example.com",
+            userDetailsServiceBeanName = "testUserDataService")
+    void testAccountDetailsPageShown() throws Exception {
+        mockMvc.perform(get("/user/details/{id}",testAdmin.getId()))
+                .andExpect(status().isOk())
+                .andExpect(view().name("details"));
+    }
 
-//    @Test
-//    @WithMockUser(
-//            username = "admin@example.com",
-//            roles = {"ADMIN", "USER"}
-//    )
-//    void testUserEditUsernamePageShown() throws Exception {
-//        mockMvc.perform(get("/user/edit-username"))
-//                .andExpect(status().isOk())
-//                .andExpect(view().name("edit-username"));
-//    }
+    @Test
+    @WithUserDetails(value = "admin@example.com",
+            userDetailsServiceBeanName = "testUserDataService")
+    void testUserEditUsernamePageShown() throws Exception {
+        mockMvc.perform(get("/user/edit-username"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("edit-username"));
+    }
 
 
-//    @Test
-//    @WithMockUser(
-//            username = "admin@example.com",
-//            roles = {"ADMIN", "USER"}
-//    )
-//    void testUserAdminDetailsPageShown() throws Exception {
-//        mockMvc.perform(get("/users"))
-//                .andExpect(status().isOk())
-//                .andExpect(view().name("user-admin-details"));
-//    }
+    @Test
+    @WithUserDetails(value = "admin@example.com",
+            userDetailsServiceBeanName = "testUserDataService")
+    void testUserAdminDetailsPageShown() throws Exception {
+        mockMvc.perform(get("/users"))
+                .andExpect(status().is4xxClientError());
+    }
 
 
     @Test
