@@ -4,7 +4,7 @@ loadUsersButton.addEventListener('click', onLoadUsers);
 
 
 function onLoadUsers(event) {
-    var requestOptions = {
+    let requestOptions = {
         method: 'GET',
         redirect: 'follow'
     };
@@ -27,9 +27,9 @@ function onLoadUsers(event) {
             emailCol.textContent = user.email
             firstNameCol.textContent = user.firstName
             lastNameCol.textContent = user.lastName
-            var output = ''
+            let output = ''
             let isAdmin = false
-            for (var ur in user.userRoles) {
+            for (let ur in user.userRoles) {
                 if (user.userRoles[ur].userRole === 'ADMIN'){
                     isAdmin = true
                 }

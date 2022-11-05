@@ -22,7 +22,10 @@ public class CommentService {
 
 
     public List<CommentEntity> getAllComments() {
+
         return this.commentRepository.findAll();
+
+
     }
 
     public void saveComment(CommentDTO commentModel, Long id) {
