@@ -27,10 +27,7 @@ public class CommentService {
 
 
     public List<CommentDisplayViewDTO> getAllComments() {
-
         return this.commentRepository.findAll().stream().map(this.commentMapper::foodEntityToFoodDto).toList();
-
-
     }
 
     public void saveComment(CommentDTO commentModel, Long id) {

@@ -14,6 +14,7 @@ public class FoodController {
         this.foodService = foodService;
     }
 
+
     @GetMapping("/foods")
     public String getFoods(
             Model model
