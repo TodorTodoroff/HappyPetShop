@@ -1,7 +1,8 @@
 package com.example.happypetshop.services;
 
-import com.example.happypetshop.models.dtos.CommentDTO;
+import com.example.happypetshop.models.dtos.CommentDisplayViewDTO;
 import com.example.happypetshop.models.entities.CommentEntity;
+import com.example.happypetshop.models.mapper.CommentMapper;
 import com.example.happypetshop.repositories.CommentRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,11 +24,12 @@ public class CommentServiceTest {
     private UserService userService;
 
     private CommentService toTest;
+    private CommentMapper commentMapper;
 
     @BeforeEach
     void setUp() {
 
-        toTest = new CommentService(mockCommentRepository, userService);
+        toTest = new CommentService(mockCommentRepository, userService, commentMapper);
     }
 
     @Test
@@ -44,17 +46,15 @@ public class CommentServiceTest {
 
         when(mockCommentRepository.findAll()).thenReturn(List.of(testComment1, testComment2));
 
-        List<CommentEntity> testListComments =
+        List<CommentDisplayViewDTO> testListComments =
                 toTest.getAllComments();
 
         Assertions.assertEquals(2, testListComments.size());
         Assertions.assertEquals(testComment1.getComment(), testListComments.get(0).getComment());
         Assertions.assertEquals(testComment1.getUsername(), testListComments.get(0).getUsername());
-        Assertions.assertEquals(testComment1.getId(), testListComments.get(0).getId());
 
         Assertions.assertEquals(testComment2.getComment(), testListComments.get(1).getComment());
         Assertions.assertEquals(testComment2.getUsername(), testListComments.get(1).getUsername());
-        Assertions.assertEquals(testComment2.getId(), testListComments.get(1).getId());
 
 
     }
