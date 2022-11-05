@@ -88,9 +88,12 @@
                                     type="password"
                                     class="form-control"
                                     placeholder="Repeat password"/>
-                            <p class="invalid-feedback errors alert alert-danger">
-                                Password length must be more than 3 characters long.
-                            </p>
+                            <div class="invalid-feedback errors alert alert-danger">
+                            <div
+                                    th:each="err : ${#fields.errors()}"
+                                    th:text="${err}"
+                            />
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-danger w-50">Register</button>
                     </form>

@@ -1,9 +1,16 @@
 package com.example.happypetshop.models.dtos;
 
+import com.example.happypetshop.models.validation.FieldMatch;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+@FieldMatch(
+        first = "password",
+        second = "confirmPassword",
+        message = "Passwords do not match."
+)
 public class UserRegisterDTO {
 
     @NotEmpty(message = "User email should be provided.")
